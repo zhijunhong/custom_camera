@@ -56,7 +56,7 @@ Pipeline示意图
 
 #### 3. Capture
 
-相机的所有操作和参数配置最终都是服务于图像捕获，例如对焦是为了让某一个区域的图像更加清晰，调节曝光补偿是为了调节图像的亮度。因此，在Camera2 里面所有的相机操作和参数配置都被抽象成Capture（捕获），所以不要简单的把Capture直接理解成是拍照，因为Capture操作可能仅仅是为了让预览画面更清晰而进行对焦而已。如果你熟悉Camera，那你可能会问 `setFlashMode()` 在哪？`setFocusMode()` 在哪？`takePicture()` 在哪？告诉你，它们都是通过Capture 来实现的。
+相机的所有操作和参数配置最终都是服务于图像捕获，例如对焦是为了让某一个区域的图像更加清晰，调节曝光补偿是为了调节图像的亮度等。因此，在Camera2 里面所有的相机操作和参数配置都被抽象成Capture（捕获），所以不要简单的把Capture直接理解成是拍照，因为Capture操作可能仅仅是为了让预览画面更清晰而进行对焦而已。如果你熟悉Camera，那你可能会问 `setFlashMode()` 在哪？`setFocusMode()` 在哪？`takePicture()` 在哪？告诉你，它们都是通过Capture 来实现的。
 
 Capture从执行方式上又被细分为【单次模式】、【多次模式】和【重复模式】三种，我们来一一解释下：
 
@@ -67,12 +67,12 @@ Capture从执行方式上又被细分为【单次模式】、【多次模式】�
 ### 关键API
 
 | CameraManager            | CameraManager是一个负责查询和建立相机连接的系统服务，它的功能不多，这里列出几个CameraManager的关键功能：<br/>1.将相机信息封装到CameraCharacteristics中，并提获取CameraCharacteristics实例的方式;<br />2.根据指定的相机ID连接相机设备；<br />3.提供将闪光灯设置成手电筒模式的快捷方式。 |
-| ------------------------ | ------------------------------------------------------------ |
+| :----------------------- | :----------------------------------------------------------- |
 | CameraCharacteristics    | CameraCharacteristics 是一个只读的相机信息提供者，其内部携带大量的相机信息，包括代表相机朝向的 `LENS_FACING`；判断闪光灯是否可用的 `FLASH_INFO_AVAILABLE`；获取所有可用 AE 模式的 `CONTROL_AE_AVAILABLE_MODES` 等。如果你对Camera1比较熟悉，那么CameraCharacteristics有点像Camera1的 `Camera.CameraInfo` 或者 `Camera.Parameters`。 |
 | **CameraDevice**         | **CameraDevice 代表当前连接的相机设备，它的职责有以下四个：<br />1.根据指定的参数创建 CameraCaptureSession；<br />2.根据指定的模板创建 CaptureRequest；<br />3.关闭相机设备；<br />4.监听相机设备的状态，例如断开连接、开启成功和开启失败等。<br />熟悉Camera1的人可能会说CameraDevice就是Camera1的 Camera 类，实则不是，Camera 类几乎负责了所有相机的操作，而 CameraDevice 的功能则十分的单一，就是只负责建立相机连接的事务，而更加细化的相机操作则交给了稍后会介绍的CameraCaptureSession。** |
 | Surface                  | Surface 是一块用于填充图像数据的内存空间，例如你可以使用 SurfaceView 的 Surface 接收每一帧预览数据用于显示预览画面，也可以使用 ImageReader 的 Surface 接收 JPEG 或 YUV 数据。每一个 Surface 都可以有自己的尺寸和数据格式，你可以从 CameraCharacteristics 获取某一个数据格式支持的尺寸列表。 |
 | **CameraCaptureSession** | **CameraCaptureSession 实际上就是配置了目标 Surface 的 Pipeline 实例，我们在使用相机功能之前必须先创建 CameraCaptureSession 实例。一个 CameraDevice 一次只能开启一个 CameraCaptureSession，绝大部分的相机操作都是通过向 CameraCaptureSession 提交一个 Capture 请求实现的，例如拍照、连拍、设置闪光灯模式、触摸对焦、显示预览画面等。** |
-| CaptureRequest           | CaptureRequest 是向 CameraCaptureSession 提交 Capture 请求时的信息载体，其内部包括了本次 Capture 的参数配置和接收图像数据的 Surface。CaptureRequest 可以配置的信息非常多，包括图像格式、图像分辨率、传感器控制、闪光灯控制、3A 控制等等，可以说绝大部分的相机参数都是通过 CaptureRequest 配置的。值得注意的是每一个 CaptureRequest 表示一帧画面的操作，这意味着你可以精确控制每一帧的 Capture 操作。 |
+| CaptureRequest           | CaptureRequest 是向 CameraCaptureSession 提交 Capture 请求时的信息载体，其内部包括了本次 Capture 的参数配置和接收图像数据的 Surface。CaptureRequest 可以配置的信息非常多，包括图像格式、图像分辨率、传感器控制、闪光灯控制、3A 控制等，可以说绝大部分的相机参数都是通过 CaptureRequest 配置的。值得注意的是每一个 CaptureRequest 表示一帧画面的操作，这意味着你可以精确控制每一帧的 Capture 操作。 |
 | **CaptureResult**        | **CaptureResult 是每一次 Capture 操作的结果，里面包括了很多状态信息，包括闪光灯状态、对焦状态、时间戳等等。例如你可以在拍照完成的时候，通过 CaptureResult 获取本次拍照时的对焦状态和时间戳。需要注意的是，CaptureResult 并不包含任何图像数据，前面我们在介绍 Surface 的时候说了，图像数据都是从 Surface 获取的。** |
 | ImageReader              | 用于从相机打开的通道中读取需要的格式的原始图像数据，可以设置多个ImageReader。 |
 
