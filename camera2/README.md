@@ -10,7 +10,7 @@ Camera2相比于之前的Camera1架构完全不同，使用起来比较复杂，
 
 
 
-**完整代码，请移步：https://github.com/zhijunhong/Camera2Sample**
+**完整代码，请移步：https://github.com/zhijunhong/custom_camera/tree/master/camera2**
 
 
 
@@ -32,7 +32,7 @@ Camera2相比于之前的Camera1架构完全不同，使用起来比较复杂，
 
 Camera2的API模型被设计成一个 Pipeline（管道），它按顺序处理每一帧的请求并返回请求结果给客户端。下面这张来自官方的图展示了Pipeline的工作流程，我们会通过一个简单的例子详细解释这张图。
 
-![img](https://upload-images.jianshu.io/upload_images/1519399-5a506d2c183d815e.png?imageMogr2/auto-orient/strip|imageView2/2/w/548/format/webp)
+![img](https://github.com/zhijunhong/custom_camera/blob/master/art/20210224001.png)
 
 Pipeline示意图
 
@@ -78,7 +78,7 @@ Capture从执行方式上又被细分为【单次模式】、【多次模式】�
 
 ### 开发流程
 
-![截屏2021-02-23下午5.32.48](/Users/zhijunhong/Desktop/截屏2021-02-23下午5.32.48.png)
+![img](https://github.com/zhijunhong/custom_camera/blob/master/art/20210224002.png)
 
 #### 1.获取CameraManager
 
@@ -390,7 +390,7 @@ jpegImageReader?.close()
 
 
 
-完整代码：https://github.com/zhijunhong/Camera2Sample
+完整代码：https://github.com/zhijunhong/custom_camera/tree/master/camera2
 
 **最后，别忘了start哟~**
 
