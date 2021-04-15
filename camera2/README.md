@@ -47,7 +47,7 @@ Pipeline示意图
 
 #### 2. Supported Hardware Level
 
-相机功能的强大与否和硬件息息相关，不同厂商对 Camera2 的支持程度也不同，所以Camera2定义了一个叫做Supported Hardware Level的重要概念，其作用是将不同设备上的Camera2根据功能的支持情况划分成多个不同级别以便开发者能够大概了解当前设备上Camera2的支持情况。截止到Android P为止，从低到高一共有LEGACY、LIMITED、FULL 和 LEVEL_3四个级别：
+相机功能的强大与否和硬件息息相关，不同厂商对 Camera2 的支持程度也不同，所以Camera2定义了一个叫做Supported Hardware Level的重要概念。其作用是将不同设备上的Camera2根据功能的支持情况划分成多个不同级别以便开发者能够大概了解当前设备上Camera2的支持情况。截止到Android P为止，从低到高一共有LEGACY、LIMITED、FULL 和 LEVEL_3四个级别：
 
 1. **LEGACY**：向后兼容的级别，处于该级别的设备意味着它只支持Camera1的功能，不具备任何Camera2高级特性;
 2. **LIMITED**：除了支持Camera1的基础功能之外，还支持部分Camera2高级特性的级别;
@@ -236,7 +236,7 @@ cameraManager.openCamera(cameraId, cameraStateCallback, mainHandler)
 - onError：当相机打开失败时，需要进行释放相机的操作
 - onClosed：调用Camera.close()后的回调方法
 
-#### 5.创建Capture会话
+#### 5.创建Capture Session
 
 ```kotlin
 val sessionStateCallback = SessionStateCallback()

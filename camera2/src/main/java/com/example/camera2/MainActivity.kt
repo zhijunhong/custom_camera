@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
     private val mediaActionSound: MediaActionSound = MediaActionSound()
     private val saveImageExecutor: Executor = Executors.newSingleThreadExecutor()
     private val deviceOrientationListener: DeviceOrientationListener by lazy { DeviceOrientationListener(this) }
-    private val cameraManager: CameraManager by lazy { getSystemService(CameraManager::class.java) }
+    private val cameraManager: CameraManager by lazy { getSystemService(CameraManager::class.java) }                        //初始化CameraManager
     private val cameraPreview: CameraPreview by lazy { findViewById<CameraPreview>(R.id.camera_preview) }
     private val thumbnailView: ImageView by lazy { findViewById<ImageView>(R.id.thumbnail_view) }
     private val captureImageButton: ImageButton by lazy { findViewById<ImageButton>(R.id.capture_image_button) }
@@ -213,7 +213,7 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
                 val jpegSurface = jpegSurface
                 if (captureSession != null && captureImageRequestBuilder != null && jpegSurface != null && cameraCharacteristics != null) {
                     // Configure the jpeg orientation according to the device orientation.
-                    val deviceOrientation = deviceOrientationListener.orientation
+                    val deviceOrientation = deviceOrientationListener.orientation                   //设备方向监听返回当前手机朝向
                     val jpegOrientation = getJpegOrientation(cameraCharacteristics, deviceOrientation)
                     captureImageRequestBuilder[CaptureRequest.JPEG_ORIENTATION] = jpegOrientation
 
@@ -652,7 +652,7 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
 
     private inner class CaptureImageButtonListener(context: Context) : GestureDetector.SimpleOnGestureListener(), View.OnTouchListener {
 
-        private val gestureDetector: GestureDetector = GestureDetector(context, this)
+        private val gestureDetector: GestureDetector = GestureDetector(context, this)       //手势操作API
         private var isLongPressed: Boolean = false
 
         override fun onTouch(view: View, event: MotionEvent): Boolean {
@@ -669,7 +669,7 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
 
         override fun onLongPress(event: MotionEvent) {
             isLongPressed = true
-            startCaptureImageContinuously()
+            startCaptureImageContinuously()                                                         //一直拍照
         }
 
         private fun onLongPressUp() {
@@ -738,16 +738,16 @@ class MainActivity : AppCompatActivity(), Handler.Callback {
             val captureResult = captureResults.take()
             if (image != null && captureResult != null) {
                 image.use {
-                    val jpegByteBuffer = it.planes[0].buffer// Jpeg image data only occupy the planes[0].
+                    val jpegByteBuffer = it.planes[0].buffer                                        // Jpeg image data only occupy the planes[0].
                     val jpegByteArray = ByteArray(jpegByteBuffer.remaining())
                     jpegByteBuffer.get(jpegByteArray)
                     val width = it.width
                     val height = it.height
                     saveImageExecutor.execute {
                         val date = System.currentTimeMillis()
-                        val title = "IMG_${dateFormat.format(date)}"// e.g. IMG_20190211100833786
-                        val displayName = "$title.jpeg"// e.g. IMG_20190211100833786.jpeg
-                        val path = "$cameraDir/$displayName"// e.g. /sdcard/DCIM/Camera/IMG_20190211100833786.jpeg
+                        val title = "IMG_${dateFormat.format(date)}"                                // e.g. IMG_20190211100833786
+                        val displayName = "$title.jpeg"                                             // e.g. IMG_20190211100833786.jpeg
+                        val path = "$cameraDir/$displayName"                                        // e.g. /sdcard/DCIM/Camera/IMG_20190211100833786.jpeg
                         val orientation = captureResult[CaptureResult.JPEG_ORIENTATION]
                         val location = captureResult[CaptureResult.JPEG_GPS_LOCATION]
                         val longitude = location?.longitude ?: 0.0
