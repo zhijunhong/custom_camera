@@ -1,5 +1,9 @@
 # Android自定义Camera2相机
 
+![img](https://github.com/zhijunhong/custom_camera/blob/master/art/v2-af9c76902adc85e9589ceb0b5bbda24e_1440w.jpeg?raw=true)
+
+# Android自定义Camera2相机
+
 ## 写在前面
 
 Google从*Android 5.0 L(API 21)* 版本，开始引入`Camera2(android.hardware.camera2)`以取代`Camera1(android.hardware.Camera)`相机框架。
@@ -32,7 +36,7 @@ Camera2相比于之前的Camera1架构完全不同，使用起来比较复杂，
 
 Camera2的API模型被设计成一个 Pipeline（管道），它按顺序处理每一帧的请求并返回请求结果给客户端。下面这张来自官方的图展示了Pipeline的工作流程，我们会通过一个简单的例子详细解释这张图。
 
-![img](https://github.com/zhijunhong/custom_camera/blob/master/art/20210224001.png)
+![img](https://github.com/zhijunhong/custom_camera/blob/master/art/20210224001.png?raw=true)
 
 Pipeline示意图
 
@@ -78,7 +82,7 @@ Capture从执行方式上又被细分为【单次模式】、【多次模式】�
 
 ### 开发流程
 
-![img](https://github.com/zhijunhong/custom_camera/blob/master/art/20210224002.png)
+![img](https://github.com/zhijunhong/custom_camera/blob/master/art/20210224002.png?raw=true)
 
 #### 1.获取CameraManager
 
@@ -392,7 +396,7 @@ jpegImageReader?.close()
 
 完整代码：https://github.com/zhijunhong/custom_camera/tree/master/camera2
 
-**最后，别忘了start哟~**
+**最后，如果此篇博文对你有所帮助，别忘了点个赞哟~**
 
 
 
@@ -401,6 +405,20 @@ jpegImageReader?.close()
 [Android Camera-Camera2使用](http://yeungeek.github.io/2020/01/19/AndroidCamera-UsingCamera2/)
 
 [Android Camera2 教程](https://www.jianshu.com/p/9a2e66916fcb)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
