@@ -2,8 +2,6 @@
 
 ![img](https://github.com/zhijunhong/custom_camera/blob/master/art/v2-af9c76902adc85e9589ceb0b5bbda24e_1440w.jpeg?raw=true)
 
-# Android自定义Camera2相机
-
 ## 写在前面
 
 Google从*Android 5.0 L(API 21)* 版本，开始引入`Camera2(android.hardware.camera2)`以取代`Camera1(android.hardware.Camera)`相机框架。
