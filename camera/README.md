@@ -1,5 +1,7 @@
 # Android自定义Camera相机
 
+![251-2517884_android-camera-icon-facebook-messenger-round-icon](https://github.com/zhijunhong/custom_camera/blob/master/art/Google_Camera.png?raw=true)
+
 ## 写在前面
 
 Android Framework层为各种不同的Camera和Camera的特色功能提供了支持，使得你可以很方便的在应用使用拍照和录像功能。如果希望快速实现拍照与录制视频的方法是使用Intent方式调用系统提供的相机功能；当然，如果系统提供的方式不足以满足项目的需求，你就需要自定义Camera相机。本篇博客会通过Intent方式和自定义Camera两部分介绍如何使用相机功能。
@@ -366,7 +368,27 @@ public void releaseCamera(Camera camera) {
 
   此致，希望可以对正在研究如何自定义Camera的小伙伴提供一些思路和帮助! 
 
-  **最后，别忘了start哟~**
+  **最后，如果此篇博文对你有所帮助，别忘了点个赞哟~**
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 
